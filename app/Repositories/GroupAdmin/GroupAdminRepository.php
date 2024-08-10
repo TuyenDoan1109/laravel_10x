@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Repositories\Admin;
+namespace App\Repositories\GroupAdmin;
 
 use App\Repositories\BaseRepository;
-use App\Models\Admin;
+use App\Models\GroupAdmin;
 
-class AdminRepository extends BaseRepository implements AdminRepositoryInterface
+class GroupAdminRepository extends BaseRepository implements GroupAdminRepositoryInterface
 {
     public function getModel()
     {
-        return Admin::class;
+        return GroupAdmin::class;
     }
 
     public function paginate(
@@ -20,7 +20,6 @@ class AdminRepository extends BaseRepository implements AdminRepositoryInterface
         array $filter = []
     ) 
     {
-        // dd($filter['status']);
         return $this->model::query()
             ->where('deleted_at', null)
             ->when(!empty($with), function($q) use ($with){
@@ -29,17 +28,12 @@ class AdminRepository extends BaseRepository implements AdminRepositoryInterface
             ->when(!empty($keySearch), function($q) use ($keySearch){
                 $q->where(function($sub) use ($keySearch){
                     $sub->where('name', 'like', '%' . $keySearch . '%')
-                    ->orWhere('email', 'like', '%' . $keySearch . '%')
-                    ->orWhere('phone', 'like', '%' . $keySearch . '%')
-                    ->orWhere('address', 'like', '%' . $keySearch . '%');
+                    ->orWhere('description', 'like', '%' . $keySearch . '%');
                 });
             })
             
             ->when(($filter['status'] != ''), function($q) use ($filter){
                 $q->where('status', $filter['status']);
-            })
-            ->when(!empty($filter['groupAdmin']), function($q) use ($filter){
-                $q->where('group_admin_id', $filter['groupAdmin']);
             })
             ->orderBy($orderBy[0], $orderBy[1])
             ->paginate($perPage);

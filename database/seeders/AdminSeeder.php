@@ -24,7 +24,7 @@ class AdminSeeder extends Seeder
                 [
                     'name' => 'Admin ' . $i,
                     'email' => 'admin_' . $i . '@gmail.com',
-                    'admin_group_id' => 1,
+                    'group_admin_id' => 1,
                     'email_verified_at' => now(),
                     'password' => Hash::make('1234'),   
                     'remember_token' => Str::random(10),
@@ -39,7 +39,7 @@ class AdminSeeder extends Seeder
                 [
                     'name' => 'Admin ' . $i,
                     'email' => 'admin_' . $i . '@gmail.com',
-                    'admin_group_id' => 2,
+                    'group_admin_id' => 2,
                     'email_verified_at' => now(),
                     'password' => Hash::make('1234'),   
                     'remember_token' => Str::random(10),
@@ -54,7 +54,7 @@ class AdminSeeder extends Seeder
                 [
                     'name' => 'Admin ' . $i,
                     'email' => 'admin_' . $i . '@gmail.com',
-                    'admin_group_id' => 3,
+                    'group_admin_id' => 3,
                     'status' => 0,
                     'email_verified_at' => now(),
                     'password' => Hash::make('1234'),   

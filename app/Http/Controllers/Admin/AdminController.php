@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\AdminRepositoryInterface;
 use App\Repositories\Province\ProvinceRepositoryInterface;
-use App\Repositories\AdminGroup\AdminGroupRepositoryInterface;
+use App\Repositories\GroupAdmin\GroupAdminRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
@@ -17,41 +17,21 @@ class AdminController extends Controller
 {
     protected $adminRepo;
     protected $provinceRepo;
-    protected $adminGroupRepo;
+    protected $groupAdminRepo;
     public function __construct(
         AdminRepositoryInterface $adminRepo,
         ProvinceRepositoryInterface $provinceRepo,
-        AdminGroupRepositoryInterface $adminGroupRepo,
+        GroupAdminRepositoryInterface $groupAdminRepo,
     ) 
     {
         $this->adminRepo = $adminRepo;
         $this->provinceRepo = $provinceRepo;
-        $this->adminGroupRepo = $adminGroupRepo;
+        $this->groupAdminRepo = $groupAdminRepo;
     }
     
     public function index(Request $request)
     {
         $this->resetSessionSearch('admin.admin.index');
-
-        $dataRequest = $request->all();
-
-        // if($dataRequest['confirmSearch'] == 1 and  $request->comfirm_search=="1"){
-
-        //     if(isset($request->page))
-        //         session(['search.page' => (int)$request->page]);
-        //     else
-        //         session(['search.page' => 1]);
-
-        //     if(isset($request->key_search))
-        //         session(['search.key_search' => trim($request->key_search)]);
-        //     else
-        //         session(['search.key_search' => ""]);
-
-        //      return redirect('admin/medal');
-        // }
-        // Session::put('perPage', 30);
-
-        
 
         if ($request->confirmSearch == 1) {
             session(['keySearch' => trim($request->keySearch)]);
@@ -63,8 +43,8 @@ class AdminController extends Controller
             return redirect(route('admin.admin.index'));
         }
 
-        if ($request->confirmAdminGroup == 1) {
-            session(['filter.adminGroup' => $request->adminGroup]);
+        if ($request->confirmGroupAdmin == 1) {
+            session(['filter.groupAdmin' => $request->groupAdmin]);
             return redirect(route('admin.admin.index'));
         }
 
@@ -75,11 +55,11 @@ class AdminController extends Controller
 
         $dataOption = [
             'perPage' => Session::has('perPage') ? (int)Session::get('perPage') : 10,
-            'with' => ['adminGroup'], 
+            'with' => ['groupAdmin'], 
             'orderBy' => ['id', 'desc'], 
             'keySearch' => Session::has('keySearch') ? Session::get('keySearch') : '',
             'filter' => [
-                'adminGroup' => Session::has('filter.adminGroup') ? Session::get('filter.adminGroup') : '',
+                'groupAdmin' => Session::has('filter.groupAdmin') ? Session::get('filter.groupAdmin') : '',
                 'status' => Session::has('filter.status') ? Session::get('filter.status') : ''
             ]
         ];
@@ -92,21 +72,21 @@ class AdminController extends Controller
             $dataOption['filter']
         );
         // dd($admins);
-        $adminGroups = $this->adminGroupRepo->getAll();
+        $groupAdmins = $this->groupAdminRepo->getAll();
 
         return view('admin.admins.index', compact(
             'admins',
-            'adminGroups'
+            'groupAdmins'
         ));
     }
 
     public function create()
     {
         $provinces = $this->provinceRepo->getAll();
-        $adminGroups = $this->adminGroupRepo->getAll();
+        $groupAdmins = $this->groupAdminRepo->getAll();
         return view('admin.admins.create', compact(
             'provinces',
-            'adminGroups'
+            'groupAdmins'
         ));
     }
 

@@ -43,9 +43,9 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function adminGroup(): BelongsTo
+    public function groupAdmin(): BelongsTo
     {
-        return $this->belongsTo(AdminGroup::class);
+        return $this->belongsTo(GroupAdmin::class);
     }
 
 }

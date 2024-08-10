@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AdminGroup extends Model
+class GroupAdmin extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'admin_groups';
+    protected $table = 'group_admins';
 
     public function admins(): HasMany
     {

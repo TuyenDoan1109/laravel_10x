@@ -19,8 +19,8 @@ use App\Repositories\District\DistrictRepositoryInterface;
 use App\Repositories\Ward\WardRepository;
 use App\Repositories\Ward\WardRepositoryInterface;
 
-use App\Repositories\AdminGroup\AdminGroupRepository;
-use App\Repositories\AdminGroup\AdminGroupRepositoryInterface;
+use App\Repositories\GroupAdmin\GroupAdminRepository;
+use App\Repositories\GroupAdmin\GroupAdminRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,8 +50,8 @@ class AppServiceProvider extends ServiceProvider
             WardRepository::class
         );
         $this->app->singleton(
-            AdminGroupRepositoryInterface::class,
-            AdminGroupRepository::class
+            GroupAdminRepositoryInterface::class,
+            GroupAdminRepository::class
         );
     }
 

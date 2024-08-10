@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->integer('status')->default(1);
 
-            $table->integer('admin_group_id')->default(1);   // nhóm thành viên
+            $table->integer('group_admin_id')->default(1);   // nhóm thành viên
             $table->string('province_id', 10)->nullable();
             $table->string('district_id', 10)->nullable();
             $table->string('ward_id', 10)->nullable();

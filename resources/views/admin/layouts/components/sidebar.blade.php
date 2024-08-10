@@ -8,6 +8,8 @@
     <div class="menu-sidebar__content js-scrollbar1">
       <nav class="navbar-sidebar">
         <ul class="list-unstyled navbar__list">
+
+            {{-- Dashboard --}}
             <li class="
                 @if(strpos(Request::route()->getName(), 'admin.dashboard') === 0)
                     active
@@ -17,11 +19,19 @@
                     <i class="fas fa-chart-bar"></i>Dashboard
                 </a>
             </li>
-            <li>
-                <a href="#">
+
+            {{-- QL Nhóm thành viên --}}
+            <li class="
+                @if(strpos(Request::route()->getName(), 'admin.groupAdmin') === 0)
+                    active
+                @endif
+            ">
+                <a href="{{ route('admin.groupAdmin.index') }}">
                     <i class="fas fa-chart-bar"></i>QL Nhóm thành viên
                 </a>
             </li>
+
+            {{-- QL Thành viên --}}
             <li class="
                 @if(strpos(Request::route()->getName(), 'admin.admin') === 0)
                     active
@@ -31,6 +41,8 @@
                     <i class="fas fa-chart-bar"></i>QL Thành viên
                 </a>
             </li>
+
+            {{-- QL Khách hàng --}}
             <li class="
                 @if(strpos(Request::route()->getName(), 'admin.user') === 0)
                     active

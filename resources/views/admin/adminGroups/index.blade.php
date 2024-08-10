@@ -18,16 +18,16 @@
                                     <span>/</span>
                                 </li>
                                 <li class="list-inline-item active">
-                                    <a href="{{ route('admin.admin.index') }}">QL Thành viên</a>
+                                    <a href="{{ route('admin.groupAdmin.index') }}">QL Nhóm thành viên</a>
                                 </li>
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
                                 </li>
-                                <li class="list-inline-item font-weight-bold">Danh sách thành viên</li>
+                                <li class="list-inline-item font-weight-bold">Danh sách nhóm thành viên</li>
                             </ul>
                         </div>
-                        <a href="{{ route('admin.admin.create') }}" class="btn btn-sm btn-success text-white">
-                            <i class="zmdi zmdi-plus mr-1"></i>Thêm thành viên
+                        <a href="{{ route('admin.groupAdmin.create') }}" class="btn btn-sm btn-success text-white">
+                            <i class="zmdi zmdi-plus mr-1"></i>Thêm nhóm thành viên
                         </a>
                     </div>
                 </div>
@@ -48,28 +48,7 @@
             <div class="card-body d-flex justify-content-between">
                 {{-- <strong class="card-title mb-3">Profile Card</strong> --}}
                 <div class="filters d-flex">
-                    <form id="groupAdminForm" action="{{ route('admin.admin.filterGroupAdmin') }}" method="post">
-                        @csrf
-                        <input type="hidden" value="1" name="confirmGroupAdmin">
-                        <div class="rs-select2--dark rs-select2--lg m-r-10 rs-select2--border">
-                            <select class="js-select2" name="groupAdmin" id="groupAdmin">
-                                <option value="">Chọn nhóm thành viên</option>
-                                @foreach($groupAdmins as $groupAdmin)
-                                    <option 
-                                        value="{{ $groupAdmin->id }}"
-                                        @if(session('filter.groupAdmin') == $groupAdmin->id)
-                                            selected
-                                        @endif
-                                    >
-                                        {{ $groupAdmin->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <div class="dropDownSelect2"></div>
-                        </div>
-                    </form>
-                    
-                    <form id="statusForm" action="{{ route('admin.admin.filterStatus') }}" method="post">
+                    <form id="statusForm" action="{{ route('admin.groupAdmin.filterStatus') }}" method="post">
                         @csrf
                         <input type="hidden" value="1" name="confirmStatus">
                         <div class="rs-select2--dark rs-select2--lg m-r-10 rs-select2--border">
@@ -82,7 +61,7 @@
                         </div>
                     </form>
                     
-                    <form class="au-form-icon--sm" action="{{ route('admin.admin.search') }}" method="post">
+                    <form class="au-form-icon--sm" action="{{ route('admin.groupAdmin.search') }}" method="post">
                         @csrf
                         <input class="au-input--w300 au-input--style2 line-height-38" value="{{ session('keySearch') }}" name="keySearch" type="text" placeholder="Tìm kiếm...">
                         <input type="hidden" value="1" name="confirmSearch">
@@ -93,7 +72,7 @@
                 </div>
 
                 <div class="perpage">
-                    <form id="perPageForm" action="{{ route('admin.admin.perPage') }}" method="post">
+                    <form id="perPageForm" action="{{ route('admin.groupAdmin.perPage') }}" method="post">
                         @csrf
                         <input type="hidden" value="1" name="confirmPerPage">
                         <div class="rs-select2--dark rs-select2--sm rs-select2--border">
@@ -132,24 +111,22 @@
                     </thead>
                     <tbody>
 
-                        @foreach($admins as $admin)
+                        @foreach($adminGroups as $adminGroup)
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox" class="checkItem" name="" id="">
                             </td>
-                            <td class="text-center">{{ $admin->name }}</td>
-                            <td class="text-center">{{ $admin->email }}</td>
-                            <td class="text-center">{{ $admin->phone }}</td>
-                            <td class="text-center">{{ $admin->address }}</td>
-                            <td class="text-center">{{ $admin->groupAdmin->name }}</td>
+                            <td class="text-center">{{ $adminGroup->name }}</td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
                             <td class="text-center">
                                 <label class="switch switch-3d switch-primary mr-3">
                                     <input 
                                         type="checkbox" 
                                         class="switch-input"
-                                        @if($admin->status == 1)
-                                            checked="true"
-                                        @endif
+                                        checked="true"
                                     >
                                     <span class="switch-label"></span>
                                     <span class="switch-handle"></span>
@@ -173,10 +150,10 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        Showing {{ $admins->firstItem() }} to {{ $admins->lastItem() }} of {{ $admins->total() }} entries
+                        Showing {{ $adminGroups->firstItem() }} to {{ $adminGroups->lastItem() }} of {{ $adminGroups->total() }} entries
                     </div>
                     <div>
-                        {{ $admins->links('vendor.pagination.custom') }}
+                        {{ $adminGroups->links('vendor.pagination.custom') }}
                     </div>
                 </div>
             </div>
@@ -189,7 +166,7 @@
 
 
 @section('additionalJs')
-<script src="{{ asset('backend/js/admin/index.js') }}"></script>
+<script src="{{ asset('backend/js/groupAdmin/index.js') }}"></script>
 @endsection
 
 

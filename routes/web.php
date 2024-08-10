@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminRegisterController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\GroupAdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -18,6 +19,11 @@ use App\Http\Controllers\Ajax\LocationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PageController;
+
+
+// TEST
+use App\Http\Controllers\Test1Controller;
+
 
 
 // BACKEND
@@ -33,11 +39,12 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        // Thành viên
         Route::prefix('/admins')->name('admin.')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('index');        // all admins
             Route::post('/search', [AdminController::class, 'index'])->name('search');        // search
             Route::post('/perPage', [AdminController::class, 'index'])->name('perPage');        // perPage
-            Route::post('/filterAdminGroup', [AdminController::class, 'index'])->name('filterAdminGroup');        // filterAdminGroup
+            Route::post('/filterGroupAdmin', [AdminController::class, 'index'])->name('filterGroupAdmin');        // filterGroupAmin
             Route::post('/filterStatus', [AdminController::class, 'index'])->name('filterStatus');        // filterStatus
             Route::get('/create', [AdminController::class, 'create'])->name('create'); // show add admin page
             Route::post('/', [AdminController::class, 'store'])->name('store');       // add admin method
@@ -46,6 +53,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::delete('/{id}', [AdminController::class, 'destroy'])->name('destroy'); // delete admin
         });
 
+        // Người dùng
         Route::prefix('/users')->name('user.')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');        
             Route::get('/create', [UserController::class, 'create'])->name('create'); 
@@ -53,6 +61,19 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::get('/{id}', [UserController::class, 'edit'])->name('edit');  
             Route::put('/{id}', [UserController::class, 'update'])->name('update');  
             Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy'); 
+        });
+
+        // Nhóm thành viên
+        Route::prefix('/groupAdmins')->name('groupAdmin.')->group(function () {
+            Route::get('/', [GroupAdminController::class, 'index'])->name('index');        
+            Route::post('/search', [GroupAdminController::class, 'index'])->name('search');        
+            Route::post('/perPage', [GroupAdminController::class, 'index'])->name('perPage');        
+            Route::post('/filterStatus', [GroupAdminController::class, 'index'])->name('filterStatus');        
+            Route::get('/create', [GroupAdminController::class, 'create'])->name('create'); 
+            Route::post('/', [GroupAdminController::class, 'store'])->name('store');       
+            Route::get('/{id}', [GroupAdminController::class, 'edit'])->name('edit');  
+            Route::put('/{id}', [GroupAdminController::class, 'update'])->name('update');  
+            Route::delete('/{id}', [GroupAdminController::class, 'destroy'])->name('destroy'); 
         });
 
     });
@@ -111,3 +132,27 @@ Route::get('routes', function () {
     }
     echo "</table>";
 });
+
+
+
+
+
+
+
+// TEST
+Route::get('/test1', [Test1Controller::class, 'test1'])->name('test1');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
