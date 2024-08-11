@@ -1,6 +1,9 @@
  - Laravel 10 Docs: 
 https://laravel.com/docs/10.x
 
+composer require laravel/ui    --> laravel auth
+php artisan optimize:clear     --> clear cache
+
  - https://github.com/yoeunes/toastr
 Toastr.js notifications for Laravel
 composer require yoeunes/toastr
