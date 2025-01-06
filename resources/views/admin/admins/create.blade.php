@@ -60,8 +60,8 @@
                                 <label for="group" class=" form-control-label">Nhóm thành viên <span class="text-danger">(*)</span></label>
                                 <select name="adminGroup" id="adminGroup" class="form-control">
                                     <option value="">-- Chọn nhóm thành viên --</option>
-                                    @foreach($adminGroups as $adminGroup)
-                                        <option value="{{ $adminGroup->id }}">{{ $adminGroup->name }}</option>
+                                    @foreach($groupAdmins as $groupAdmin)
+                                        <option value="{{ $groupAdmin->id }}">{{ $groupAdmin->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
