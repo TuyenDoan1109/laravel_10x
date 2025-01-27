@@ -27,7 +27,7 @@
                 @endif
             ">
                 <a href="{{ route('admin.groupAdmin.index') }}">
-                    <i class="fas fa-chart-bar"></i>QL Nhóm thành viên
+                    <i class="fas fa-chart-bar"></i>QL Nhóm Admin
                 </a>
             </li>
 
@@ -38,7 +38,7 @@
                 @endif
             ">
                 <a href="{{ route('admin.admin.index') }}">
-                    <i class="fas fa-chart-bar"></i>QL Thành viên
+                    <i class="fas fa-chart-bar"></i>QL Admin
                 </a>
             </li>
 
@@ -49,7 +49,7 @@
                 @endif
             ">
                 <a href="{{ route('admin.user.index') }}">
-                    <i class="fas fa-chart-bar"></i>QL Khách hàng
+                    <i class="fas fa-chart-bar"></i>QL User
                 </a>
             </li>
           
