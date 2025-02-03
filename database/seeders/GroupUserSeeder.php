@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class GroupAdminSeeder extends Seeder
+class GroupUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,9 @@ class GroupAdminSeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i <= 100; $i++) {
-            DB::table('group_admins')->insert([
+            DB::table('group_users')->insert([
                 [
-                    'name' => 'Group Admin ' . $i,
+                    'name' => 'Group User ' . $i,
                     'description' => 'description ' . $i,
                     'created_at' => now(),
                     'updated_at' => now()

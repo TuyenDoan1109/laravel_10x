@@ -42,6 +42,17 @@
                 </a>
             </li>
 
+            {{-- QL Nhóm khách hàng --}}
+            <li class="
+                @if(strpos(Request::route()->getName(), 'admin.groupUser') === 0)
+                    active
+                @endif
+            ">
+                <a href="{{ route('admin.groupUser.index') }}">
+                    <i class="fas fa-chart-bar"></i>QL Nhóm User
+                </a>
+            </li>
+
             {{-- QL Khách hàng --}}
             <li class="
                 @if(strpos(Request::route()->getName(), 'admin.user') === 0)

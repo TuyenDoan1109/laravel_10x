@@ -22,6 +22,9 @@ use App\Repositories\Ward\WardRepositoryInterface;
 use App\Repositories\GroupAdmin\GroupAdminRepository;
 use App\Repositories\GroupAdmin\GroupAdminRepositoryInterface;
 
+use App\Repositories\GroupUser\GroupUserRepository;
+use App\Repositories\GroupUser\GroupUserRepositoryInterface;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -52,6 +55,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             GroupAdminRepositoryInterface::class,
             GroupAdminRepository::class
+        );
+        $this->app->singleton(
+            GroupUserRepositoryInterface::class,
+            GroupUserRepository::class
         );
     }
 

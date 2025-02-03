@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\AdminRegisterController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GroupAdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\GroupUserController;
 use App\Http\Controllers\Admin\DashboardController;
 
 
@@ -74,6 +75,19 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::get('/{id}', [GroupAdminController::class, 'edit'])->name('edit');  
             Route::put('/{id}', [GroupAdminController::class, 'update'])->name('update');  
             Route::delete('/{id}', [GroupAdminController::class, 'destroy'])->name('destroy'); 
+        });
+
+        // Nhóm khách hàng
+        Route::prefix('/groupUsers')->name('groupUser.')->group(function () {
+            Route::get('/', [GroupUserController::class, 'index'])->name('index');        
+            Route::post('/search', [GroupUserController::class, 'index'])->name('search');        
+            Route::post('/perPage', [GroupUserController::class, 'index'])->name('perPage');        
+            Route::post('/filterStatus', [GroupUserController::class, 'index'])->name('filterStatus');        
+            Route::get('/create', [GroupUserController::class, 'create'])->name('create'); 
+            Route::post('/', [GroupUserController::class, 'store'])->name('store');       
+            Route::get('/{id}', [GroupUserController::class, 'edit'])->name('edit');  
+            Route::put('/{id}', [GroupUserController::class, 'update'])->name('update');  
+            Route::delete('/{id}', [GroupUserController::class, 'destroy'])->name('destroy'); 
         });
 
     });

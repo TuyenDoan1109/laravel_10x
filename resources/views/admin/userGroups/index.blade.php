@@ -18,16 +18,16 @@
                                     <span>/</span>
                                 </li>
                                 <li class="list-inline-item active">
-                                    <a href="{{ route('admin.groupAdmin.index') }}">QL Nhóm thành viên</a>
+                                    <a href="{{ route('admin.groupUser.index') }}">QL Nhóm khách hàng</a>
                                 </li>
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
                                 </li>
-                                <li class="list-inline-item font-weight-bold">Danh sách nhóm thành viên</li>
+                                <li class="list-inline-item font-weight-bold">Danh sách nhóm khách hàng</li>
                             </ul>
                         </div>
-                        <a href="{{ route('admin.groupAdmin.create') }}" class="btn btn-sm btn-success text-white">
-                            <i class="zmdi zmdi-plus mr-1"></i>Thêm nhóm thành viên
+                        <a href="{{ route('admin.groupUser.create') }}" class="btn btn-sm btn-success text-white">
+                            <i class="zmdi zmdi-plus mr-1"></i>Thêm nhóm khách hàng
                         </a>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
             <div class="card-body d-flex justify-content-between">
                 {{-- <strong class="card-title mb-3">Profile Card</strong> --}}
                 <div class="filters d-flex">
-                    <form id="statusForm" action="{{ route('admin.groupAdmin.filterStatus') }}" method="post">
+                    <form id="statusForm" action="{{ route('admin.groupUser.filterStatus') }}" method="post">
                         @csrf
                         <input type="hidden" value="1" name="confirmStatus">
                         <div class="rs-select2--dark rs-select2--lg m-r-10 rs-select2--border">
@@ -61,7 +61,7 @@
                         </div>
                     </form>
                     
-                    <form class="au-form-icon--sm" action="{{ route('admin.groupAdmin.search') }}" method="post">
+                    <form class="au-form-icon--sm" action="{{ route('admin.groupUser.search') }}" method="post">
                         @csrf
                         <input class="au-input--w300 au-input--style2 line-height-38" value="{{ session('keySearch') }}" name="keySearch" type="text" placeholder="Tìm kiếm...">
                         <input type="hidden" value="1" name="confirmSearch">
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="perpage">
-                    <form id="perPageForm" action="{{ route('admin.groupAdmin.perPage') }}" method="post">
+                    <form id="perPageForm" action="{{ route('admin.groupUser.perPage') }}" method="post">
                         @csrf
                         <input type="hidden" value="1" name="confirmPerPage">
                         <div class="rs-select2--dark rs-select2--sm rs-select2--border">
@@ -108,13 +108,13 @@
                     </thead>
                     <tbody>
 
-                        @foreach($adminGroups as $adminGroup)
+                        @foreach($userGroups as $userGroup)
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox" class="checkItem" name="" id="">
                             </td>
-                            <td class="text-center">{{ $adminGroup->name }}</td>
-                            <td class="text-center">{{ $adminGroup->description }}</td>
+                            <td class="text-center">{{ $userGroup->name }}</td>
+                            <td class="text-center">{{ $userGroup->description }}</td>
                             <td class="text-center">
                                 <label class="switch switch-3d switch-primary mr-3">
                                     <input 
@@ -144,10 +144,10 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        Showing {{ $adminGroups->firstItem() }} to {{ $adminGroups->lastItem() }} of {{ $adminGroups->total() }} entries
+                        Showing {{ $userGroups->firstItem() }} to {{ $userGroups->lastItem() }} of {{ $userGroups->total() }} entries
                     </div>
                     <div>
-                        {{ $adminGroups->links('vendor.pagination.custom') }}
+                        {{ $userGroups->links('vendor.pagination.custom') }}
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
 
 
 @section('additionalJs')
-<script src="{{ asset('backend/js/groupAdmin/index.js') }}"></script>
+<script src="{{ asset('backend/js/groupUser/index.js') }}"></script>
 @endsection
 
 
