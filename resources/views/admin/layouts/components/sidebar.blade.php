@@ -63,6 +63,20 @@
                     <i class="fas fa-chart-bar"></i>QL User
                 </a>
             </li>
+
+            {{-- QL Nhóm Nhà cung cấp --}}
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>QL Nhóm Vendor
+                </a>
+            </li>
+
+            {{-- QL Nhà cung cấp --}}
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>QL Vendor
+                </a>
+            </li>
           
         </ul>
       </nav>
